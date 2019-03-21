@@ -1,28 +1,56 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux';
+import { Route, Router } from 'react-router-dom';
+import history from './history';
+import PrivateRoute from './shared/PrivateRoute';
+import LoginPage from './pages/Login/LoginPage';
+import ApplicationsPage from './pages/ApplicationsPage';
+import ConfigurationPage from './pages/Configuration/ConfigurationPage';
+import { appLoadingStart, startSignout } from './actions';
 import './App.css';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.onStartLoading();
+  }
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+    const { isAppLoading, user } = this.props;
+    console.log('USER:', user);
+    return isAppLoading ? (
+      <div>Loading...</div>
+    ) : (
+      <Router history={history}>
+        <div>
+          <PrivateRoute
+            path="/"
+            title="Applications"
+            exact
+            component={ApplicationsPage}
+          />
+          <PrivateRoute
+            path="/configuration"
+            title="Configuration"
+            exact
+            component={ConfigurationPage}
+          />
+          <Route path="/login/" component={LoginPage} />
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  isAppLoading: state.status.appLoading,
+  user: state.auth.user
+});
+
+const mapDispatchToProps = dispatch => ({
+  onStartLoading: () => dispatch(appLoadingStart()),
+  onSignout: () => dispatch(startSignout())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
