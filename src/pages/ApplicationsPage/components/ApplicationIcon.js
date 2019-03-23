@@ -24,9 +24,9 @@ const styles = theme => ({
   }
 });
 
-const ApplicationIcon = ({ application, classes }) => {
+const ApplicationIcon = ({ application, classes, onSelectApplication }) => {
   return (
-    <div className={classes.iconContainer}>
+    <div className={classes.iconContainer} onClick={() => onSelectApplication(application)}>
       <img src={application.icon} alt="icon" />
       <Typography variant="h5">{application.name}</Typography>
     </div>

@@ -16,6 +16,4 @@ const getAllApplications = function*(action) {
   }
 };
 
-export default [
-  takeLatest(REQUEST_APPLICATIONS, getAllApplications),
-];
+export default [takeLatest(REQUEST_APPLICATIONS, getAllApplications)];

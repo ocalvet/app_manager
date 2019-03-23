@@ -1,6 +1,7 @@
 import {
   REQUEST_APPLICATIONS_SUCCEEDED,
-  REQUEST_APPLICATIONS_FAILED
+  REQUEST_APPLICATIONS_FAILED,
+  SELECT_APPLICATION
 } from '../actions';
 
 const auth = (
@@ -18,6 +19,11 @@ const auth = (
       return {
         ...state,
         error: action.error
+      };
+    case SELECT_APPLICATION:
+      return {
+        ...state,
+        selected: action.application
       };
     default:
       return state;

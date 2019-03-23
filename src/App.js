@@ -5,6 +5,7 @@ import history from './history';
 import PrivateRoute from './shared/PrivateRoute';
 import LoginPage from './pages/Login/LoginPage';
 import ApplicationsPage from './pages/ApplicationsPage/ApplicationsPage';
+import ApplicationPage from './pages/ApplicationPage/ApplicationPage';
 import ConfigurationPage from './pages/Configuration/ConfigurationPage';
 import { appLoadingStart, startSignout } from './actions';
 import './App.css';
@@ -27,7 +28,12 @@ class App extends Component {
             component={ApplicationsPage}
           />
           <PrivateRoute
-            path="/configuration"
+            path="/applications/:appUrl/"
+            title="Applications"
+            component={ApplicationPage}
+          />
+          <PrivateRoute
+            path="/configuration/"
             title="Configuration"
             exact
             component={ConfigurationPage}
