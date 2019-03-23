@@ -2,14 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import { requestApplications } from '../actions';
+import ApplicationIcon from './components/ApplicationIcon';
+import { requestApplications } from '../../actions';
 
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit
+const styles = () => {
+  return {
+    applicationsContainer: {
+      display: 'flex',
+      flexDirection: 'row'
+    }
   }
-});
+}
 
 class ApplicationsPage extends React.Component {
   componentDidMount() {
@@ -22,16 +25,9 @@ class ApplicationsPage extends React.Component {
         <Typography variant="h4" gutterBottom component="h2">
           Applications Page
         </Typography>
-        <div>
-          {applications.map(app => (
-            <Button
-              key={app.name}
-              variant="contained"
-              color="primary"
-              className={classes.button}
-            >
-              {app.name}
-            </Button>
+        <div className={classes.applicationsContainer}>
+          {applications.map((app, i) => (
+            <ApplicationIcon key={i} application={app} />
           ))}
         </div>
       </div>

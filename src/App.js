@@ -4,7 +4,7 @@ import { Route, Router } from 'react-router-dom';
 import history from './history';
 import PrivateRoute from './shared/PrivateRoute';
 import LoginPage from './pages/Login/LoginPage';
-import ApplicationsPage from './pages/ApplicationsPage';
+import ApplicationsPage from './pages/ApplicationsPage/ApplicationsPage';
 import ConfigurationPage from './pages/Configuration/ConfigurationPage';
 import { appLoadingStart, startSignout } from './actions';
 import './App.css';
