@@ -9,15 +9,14 @@ class Authenticator {
           'Content-Type': 'application/json'
         }),
         method: 'POST',
-        body: JSON.stringify({
+        data: {
           username,
           password
-        })
+        }
       });
       if (response.status !== 200) throw new Error('Error in response');
-      const json = await response.json();
-      localStorage.setItem('user', JSON.stringify(json));
-      return json;
+      localStorage.setItem('user', JSON.stringify(response.data));
+      return response.data;
     } catch (e) {
       console.log('ERROR', e);
       this.signout();

@@ -8,10 +8,8 @@ import services from '../services';
 
 const appLoading = function*(action) {
   try {
-    console.log('Start loading app');
-    // Check if user is laoded
+    // Check if user is loaded
     const user = yield call(services.auth.getUser);
-    console.log('GOTTEN USER', user);
     if (user && user.token && user.token.length > 0) {
       yield put(userAuthenticated(user));
     }

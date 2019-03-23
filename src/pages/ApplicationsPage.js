@@ -25,6 +25,7 @@ class ApplicationsPage extends React.Component {
         <div>
           {applications.map(app => (
             <Button
+              key={app.name}
               variant="contained"
               color="primary"
               className={classes.button}
