@@ -14,8 +14,7 @@ class App extends Component {
     this.props.onStartLoading();
   }
   render() {
-    const { isAppLoading, user } = this.props;
-    console.log('USER:', user);
+    const { isAppLoading } = this.props;
     return isAppLoading ? (
       <div>Loading...</div>
     ) : (
